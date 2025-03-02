@@ -83,7 +83,7 @@ class TuringMachine:
                 ''.join(str(x) if x is not None else 'B' for x in self.cinta[self.posicion_cabezal + 1:])
             )
             self.historial.append(f"- {paso}")
-
+        
         return resultado, self.historial, ''.join('B' if x is None else str(x) for x in self.cinta)
 
     def generar_grafico(self):
