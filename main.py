@@ -8,10 +8,7 @@ st.title('Maquina de Turing Fibonnaci')
 
 with st.container():
     
-    tipo_maquina = st.radio(
-                "Seleccionar el tipo de Máquina de Turing",
-                ("Reconocedora", "Alteradora")
-            )
+    
 
     yaml_path = "maquina_alteradora.yaml"
 
@@ -30,18 +27,12 @@ with st.container():
         st.image('./graficas/maquina_turing.png')
         for c in lector.cadenas:
             result, historial, cinta = maquina.procesar(c)
-            if tipo_maquina == "Reconocedora":
-                re= f"De la cadena \"{c}\" se llego al estado de: \"{result}\""
-                st.subheader('Resultado cadena')
-                if result == "rechazada":
-                    st.error(re)
-                elif result == "aceptada":
-                    st.success(re)
-            elif tipo_maquina == "Alteradora":
-                re= f"De la cadena \"{c}\" se altero para: \"{cinta}\""
-                st.subheader('Resultado cadena')
-                if result == "aceptada":
-                    st.success(re)
+            
+            
+            re= f"De la cadena \"{c}\" se altero para: \"{cinta}\""
+            st.subheader('Resultado cadena')
+            if result == "aceptada":
+                st.success(re)
             pasos = ''
             pasos_show = ''
             for p in historial:
