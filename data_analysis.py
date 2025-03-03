@@ -16,6 +16,12 @@ best_degree = None
 best_mse = float('inf')
 
 plt.figure(figsize=(10, 6))
+plt.grid(True)
+plt.xlabel("Número en la secuencia Fibonacci")
+plt.ylabel("Tiempo de ejecución")
+plt.title("Tamaño de la entrada vs Tiempo de ejecución")
+plt.scatter(df['Numero'], df['Tiempo'], color='black', alpha=0.6, edgecolors='black', label="Resultados obtenidos")
+plt.savefig('dispersión.png', dpi=300)
 
 for degree in range(1,11): #Evaluar polinomios de grado 1 a 10
     poly = PolynomialFeatures(degree=degree)
@@ -37,10 +43,10 @@ for degree in range(1,11): #Evaluar polinomios de grado 1 a 10
         best_degree = degree
     
     # Graficar la curva polinomial de regresión
-    plt.plot(df['Numero'], y_pred, label=f"Degree {degree}")
+    plt.plot(df['Numero'], y_pred, label=f"Grado polinomial {degree}")
 
 # Graficar 
-plt.scatter(df['Numero'], df['Tiempo'], color='black', alpha=0.6, edgecolors='black', label="Actual Data")
+plt.scatter(df['Numero'], df['Tiempo'], color='black', alpha=0.6, edgecolors='black', label="Resultados obtenidos")
 
 
 plt.xlabel("Número en la secuencia Fibonacci")
@@ -49,7 +55,7 @@ plt.title("Tamaño de la entrada vs Tiempo de ejecución")
 plt.legend()
 plt.grid(True)
 
-plt.show()
+plt.savefig('regresion.png', dpi=300)
 
 print("Degree | MSE       | R² Score")
 print("-----------------------------")
