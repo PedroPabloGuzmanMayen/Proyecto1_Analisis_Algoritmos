@@ -66,3 +66,5 @@ print(f"\nMejor grado del polinomio: {best_degree} (MSE: {best_mse:.4f})")
 
 
 
+results_df = pd.DataFrame(errors, columns=["Degree", "MSE", "R2_Score"])
+results_df.to_csv("regression_results.csv", index=False)
