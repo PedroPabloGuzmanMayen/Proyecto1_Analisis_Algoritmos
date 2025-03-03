@@ -1,5 +1,6 @@
 import os
 from graphviz import Digraph
+import time
 
 class TuringMachine:
     def __init__(self, lector):
@@ -13,6 +14,7 @@ class TuringMachine:
         self.cinta = []
         self.posicion_cabezal = 0
         self.historial = []
+        self.tiempo_segundos = 0
 
     def es_cadena_valida(self, cadena):
         return all(caracter in self.alfabetoCinta for caracter in cadena)
@@ -32,7 +34,7 @@ class TuringMachine:
             return "Error: La cadena contiene caracteres no válidos.", []
         if not self.validar_transiciones():
             return "Error: Las transiciones no son válidas.", []
-
+        start_time = time.time()
         estado_actual = self.estado_inicial
         cache = None
         self.historial = []
@@ -74,6 +76,7 @@ class TuringMachine:
 
         resultado = "rechazada" if es_rechazada else "aceptada"
 
+        self.tiempo_segundos = time.time() - start_time
         if resultado == "aceptada":
             simbolo_actual = self.cinta[self.posicion_cabezal]
             paso = (
